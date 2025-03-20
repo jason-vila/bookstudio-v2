@@ -1,0 +1,44 @@
+.sidebar {
+  top: 60px;
+  left: 0;
+  width: 235px;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1025;
+}
+
+.sidebar {
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.sidebar.collapsed .sidebar-link {
+  display: none;
+}
+
+.sidebar.collapsed li {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+[data-bs-theme="light"] .active-effect {
+  background-color: var(--bg-primary-dark) !important;
+  color: #fff !important;
+}
+
+[data-bs-theme="dark"] .active-effect {
+  background-color: var(--bg-primary-light) !important;
+  color: #000 !important;
+}
+
+.hovered {
+  --bs-tertiary-bg: var(--bg-tertiary-color) !important;
+}
+
+.hovered:hover {
+  background-color: var(--bs-tertiary-bg) !important;
+}

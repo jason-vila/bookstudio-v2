@@ -1,0 +1,32 @@
+.header {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 1030;
+}
+
+.header-icon {
+  font-size: 24px;
+}
+
+.header-separator {
+  height: 30px;
+}
+
+.logo {
+	width: 25px;
+}
+
+[data-bs-theme="light"] .logo {
+	filter: brightness(0) invert(0);
+}
+
+.text-logo {
+  font-weight: 600;
+}
+
+.vr {
+  background-color: var(--bs-border-color);
+  opacity: 1;
+}
