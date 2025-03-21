@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <form noValidate>
-      {/* Campo de nombre de usuario */}
       <div className="mb-4">
         <label htmlFor="txtUsername" className="form-label">
           Nombre de usuario
@@ -20,18 +19,11 @@ const Login = () => {
         />
       </div>
 
-      {/* Campo de contraseña */}
-      <div className="mb-4">
+      <div className="mb-2">
         <div className="d-flex justify-content-between align-items-center">
           <label htmlFor="txtPassword" className="form-label">
             Contraseña
           </label>
-          <Link
-            to="/forgot-password"
-            className="text-body-emphasis text-decoration-none forgot-password"
-          >
-            <small>¿Olvidaste tu contraseña?</small>
-          </Link>
         </div>
         <div className="input-group">
           <input
@@ -49,13 +41,35 @@ const Login = () => {
         </div>
       </div>
 
+      <div className="mb-4 d-flex justify-content-between">
+        <div className="form-check text-start">
+          <input
+            id="rememberMe"
+            name="rememberMe"
+            type="checkbox"
+            className="form-check-input"
+          />
+          <label htmlFor="rememberMe" className="form-check-label text-small">
+            Recuérdame
+          </label>
+        </div>
+        <div className="text-end">
+          <Link
+            to="/forgot-password"
+            className="text-body-emphasis text-decoration-none text-small forgot-password"
+          >
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </div>
+      </div>
+
       <button type="submit" className="btn btn-custom-primary w-100">
         <span
           id="spinner"
           className="spinner-border spinner-border-sm d-none"
           role="status"
         ></span>
-        <span id="loginText">Iniciar Sesión</span>
+        <span id="loginText">Iniciar sesión</span>
       </button>
     </form>
   );
