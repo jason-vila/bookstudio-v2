@@ -1,0 +1,306 @@
+@font-face {
+  font-family: 'Poppins';
+  src: url('../fonts/Poppins-Regular.woff2') format('woff2'),
+       url('../fonts/Poppins-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --bg-primary-light: #f3f4f6;
+  --bg-secondary-light: #fff;
+  --bg-tertiary-light: #ececee;
+  --placeholder-light: rgba(33, 37, 41, 0.75);
+
+  --bg-primary-dark: #0a0a0a;
+  --bg-secondary-dark: #0f0f10;
+  --bg-tertiary-dark: #1f1f23;
+  --placeholder-dark: rgba(222, 226, 230, 0.75);
+
+  --bg-primary-color: var(--bg-primary-light);
+  --bg-secondary-color: var(--bg-secondary-light);
+  --bg-tertiary-color: var(--bg-tertiary-light);
+  --placeholder-color: var(--placeholder-light);
+}
+
+[data-bs-theme="dark"] {
+  --bg-primary-color: var(--bg-primary-dark);
+  --bg-secondary-color: var(--bg-secondary-dark);
+  --bg-tertiary-color: var(--bg-tertiary-dark);
+  --placeholder-color: var(--placeholder-dark);
+  --bs-border-color: #2e2e31;
+  --bs-body-bg: var(--bg-secondary-dark);
+}
+
+[data-bs-theme="light"] {
+  --bg-primary-color: var(--bg-primary-light);
+  --bg-secondary-color: var(--bg-secondary-light);
+  --bg-tertiary-color: var(--bg-tertiary-light);
+  --placeholder-color: var(--placeholder-light);
+  --bs-border-color: #cbd0dd;
+}
+
+/* ==========================================
+  1. GLOBAL STYLES
+  ========================================== */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg-primary-color);
+}
+
+.bg-body {
+  background-color: var(--bg-primary-color) !important;
+}
+
+.bg-body-secondary {
+  background-color: var(--bg-secondary-color) !important;
+}
+
+.bg-body-tertiary {
+  background-color: var(--bg-tertiary-color) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ==========================================
+  2. MAIN LAYOUT
+  ========================================== */
+body.main-layout #offcanvasSidebar {
+  width: 235px;
+  top: 60px;
+}
+
+body.main-layout .offcanvas-backdrop {
+  z-index: 1028;
+}
+
+body.main-layout main {
+  position: absolute;
+  top: 60px;
+  left: 235px;
+  right: 0;
+  height: auto;
+  min-height: calc(100vh - 60px);
+  padding: 20px;
+  overflow: hidden;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+body.main-layout main.collapsed {
+  left: 80px;
+}
+
+@media (max-width: 991.98px) {
+  body.main-layout main {
+    left: 0 !important;
+  }
+}
+
+/* ==========================================
+  3. AUTH LAYOUT
+  ========================================== */
+body.auth-layout a.forgot-password:hover {
+  text-decoration: underline !important;
+}
+
+body.auth-layout .card-header p {
+  font-size: 0.85rem;
+}
+
+/* ==========================================
+  4. UI COMPONENTS
+  ========================================== */
+
+/* 4.1 Navigation and Logo */
+[data-bs-theme="light"] .logo {
+  filter: brightness(0) invert(0);
+}
+
+.nav-link:focus-visible {
+  box-shadow: none;
+}
+
+/* 4.2 Buttons */
+/* Primary Button Styles */
+[data-bs-theme="light"] .btn-custom-primary {
+  background-color: var(--bg-primary-dark) !important;
+  color: #fff !important;
+  border-color: var(--bg-primary-dark) !important;
+}
+
+[data-bs-theme="light"] .btn-custom-primary:hover,
+[data-bs-theme="light"] .btn-custom-primary:active {
+  background-color: #2e2e2e !important;
+  color: #fff !important;
+  border-color: #2e2e2e !important;
+}
+
+[data-bs-theme="dark"] .btn-custom-primary {
+  background-color: var(--bg-primary-light) !important;
+  color: #000 !important;
+  border-color: var(--bg-primary-light) !important;
+}
+
+[data-bs-theme="dark"] .btn-custom-primary:hover,
+[data-bs-theme="dark"] .btn-custom-primary:active {
+  background-color: #e5e5e5 !important;
+  color: #000 !important;
+  border-color: #e5e5e5 !important;
+}
+
+/* Secondary Button Styles */
+.btn-custom-secondary {
+  background-color: var(--bg-secondary-color) !important;
+  color: var(--bs-emphasis-color) !important;
+  border-color: var(--bs-border-color) !important;
+}
+
+.btn-custom-secondary:hover,
+.btn-custom-secondary:active {
+  background-color: var(--bg-tertiary-color) !important;
+  color: var(--bs-emphasis-color) !important;
+  border-color: var(--bs-border-color) !important;
+}
+
+/* 4.3 Dropdowns */
+.dropdown-menu {
+  --bs-dropdown-link-hover-bg: var(--bg-tertiary-color) !important;
+}
+
+.dropdown-divider {
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: var(--bs-dropdown-link-hover-bg) !important;
+  color: var(--bs-dropdown-link-color);
+}
+
+.dropdown-danger.active, .dropdown-danger:active {
+	background-color: #dc3545 !important;
+	color: var(--bs-dropdown-link-active-color) !important;
+}
+
+/* 4.4 Forms */
+.form-control {
+  box-sizing: border-box !important;
+  border: 1px solid var(--bs-border-color);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: var(--bs-border-color);
+  outline: 0;
+  box-shadow: 0 0 0 1px var(--bs-border-color);
+}
+
+.invalid-feedback {
+  font-size: 0.75rem;
+}
+
+.input-group > .input-group-text {
+  border-top-right-radius: 0.375rem !important;
+  border-bottom-right-radius: 0.375rem !important;
+  border-right: 1px solid var(--bs-border-color) !important;
+  border-top: 1px solid var(--bs-border-color) !important;
+  border-bottom: 1px solid var(--bs-border-color) !important;
+}
+
+/* Checkbox styles for Light Theme */
+[data-bs-theme="light"] .form-check-input {
+  background-color: var(--bg-secondary-light);
+}
+
+[data-bs-theme="light"] .form-check-input:checked {
+  background-color: var(--bg-primary-dark);
+  border-color: var(--bg-primary-dark);
+}
+
+/* Checkbox styles for Dark Theme */
+[data-bs-theme="dark"] .form-check-input {
+  background-color: var(--bg-secondary-dark);
+}
+
+[data-bs-theme="dark"] .form-check-input:checked {
+  background-color: var(--bg-primary-light);
+  border-color: var(--bg-primary-light);
+}
+
+[data-bs-theme="dark"] .form-check-input:checked[type="checkbox"] {
+  --bs-form-check-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3E%3C/svg%3E");
+}
+
+.form-check-input:focus {
+  box-shadow: none;
+  border-color: inherit;
+}
+
+/* 4.5 Cards */
+.card-header {
+  border-bottom: var(--bs-border-width) var(--bs-border-style)
+    var(--bs-border-color) !important;
+}
+
+/* 4.6 Alerts and Notifications */
+.toast-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1060;
+}
+
+.toast:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* Toast animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.toast {
+  animation: slideDown 0.3s ease-out;
+}
+
+.toast.hide {
+  animation: slideUp 0.3s ease-in;
+}
+
+/* 4.7 Alerts styles for Light Theme */
+[data-bs-theme="light"] .bg-success-subtle,
+[data-bs-theme="light"] .alert-success {
+  background-color: #b8dfc9 !important;
+}
+
+[data-bs-theme="light"] .bg-danger-subtle,
+[data-bs-theme="light"] .alert-danger {
+  background-color: #f4c2c6 !important;
+}

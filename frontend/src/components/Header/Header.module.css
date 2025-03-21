@@ -14,12 +14,8 @@
   height: 30px;
 }
 
-.logo {
-	width: 25px;
-}
-
 [data-bs-theme="light"] .logo {
-	filter: brightness(0) invert(0);
+  filter: brightness(0) invert(0);
 }
 
 .text-logo {
