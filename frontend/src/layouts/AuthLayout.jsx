@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 import DropdownTheme from "../components/DropdownTheme/DropdownTheme";
-import logo from "../assets/icons/logo-light.png";
+import logo from "../assets/images/logo.svg";
 
 const AuthLayout = ({ title, subtitle }) => {
   useEffect(() => {
@@ -24,9 +24,10 @@ const AuthLayout = ({ title, subtitle }) => {
                   alt="Logo de Bookstudio"
                   src={logo}
                   width="40"
+                  height="40"
                 />
                 <h3 className="fw-bold mb-0">{title}</h3>
-                <p className="text-muted mb-0">{subtitle}</p>
+                <p className="text-muted text-small mb-0">{subtitle}</p>
               </header>
               <div className="card-body">
                 <Outlet />
