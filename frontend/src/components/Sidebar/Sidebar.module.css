@@ -6,9 +6,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 1025;
-}
-
-.sidebar {
   transition: width 0.3s ease, left 0.3s ease;
 }
 

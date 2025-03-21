@@ -1,5 +1,54 @@
 const ResetPassword = () => {
-  return <></>;
+  return (
+    <form noValidate>
+      <div className="mb-4">
+        <label htmlFor="newPassword" className="form-label">
+          Nueva contraseña
+        </label>
+        <div className="input-group">
+          <input
+            id="newPassword"
+            name="newPassword"
+            type="password"
+            className="form-control password-field"
+            placeholder="Nueva contraseña"
+          />
+          <span className="input-group-text cursor-pointer">
+            <i className="bi bi-eye"></i>
+          </span>
+          <div className="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <label htmlFor="confirmNewPassword" className="form-label">
+          Confirmar contraseña nueva
+        </label>
+        <div className="input-group">
+          <input
+            id="confirmNewPassword"
+            name="confirmNewPassword"
+            type="password"
+            className="form-control password-field"
+            placeholder="Confirmar contraseña nueva"
+          />
+          <span className="input-group-text cursor-pointer">
+            <i className="bi bi-eye"></i>
+          </span>
+          <div className="invalid-feedback"></div>
+        </div>
+      </div>
+
+      <button type="submit" className="btn btn-custom-primary w-100">
+        <span
+          id="spinner"
+          className="spinner-border spinner-border-sm d-none"
+          role="status"
+        ></span>
+        <span id="resetText">Crear contraseña</span>
+      </button>
+    </form>
+  );
 };
 
 export default ResetPassword;

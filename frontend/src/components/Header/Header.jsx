@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./Header.module.css";
 import DropdownTheme from "../DropdownTheme/DropdownTheme";
-import logo from "../../assets/logo-light.png";
+import logo from "../../assets/icons/logo-light.png";
 
 const Header = ({ userProfileImage }) => {
   return (
@@ -28,7 +28,7 @@ const Header = ({ userProfileImage }) => {
           to="/"
           className="text-center text-decoration-none text-body-emphasis ms-md-2 d-flex align-items-center"
         >
-          <img className={`${styles["logo"]} me-2`} alt="Logo de Bookstudio" src={logo} />
+          <img className="logo me-2" alt="Logo de Bookstudio" src={logo} width="25" />
           <span className={`fs-5 ${styles["text-logo"]}`}>BookStudio</span>
         </Link>
 

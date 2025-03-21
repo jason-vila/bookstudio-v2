@@ -30,9 +30,15 @@ export default function AppRoutes() {
           <Route path="/profile" element={<Profile />} />
         </Route>
 
-        <Route element={<AuthLayout />}>
+        <Route element={<AuthLayout title="Iniciar Sesión" subtitle="Empieza a gestionar tus préstamos." />}>
           <Route path="/login" element={<Login />} />
+        </Route>
+
+        <Route element={<AuthLayout title="Restablece la contraseña" subtitle="Escribe tu correo para recibir un enlace de restablecimiento." />}>
           <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Route>
+
+        <Route element={<AuthLayout title="Crear nueva contraseña" subtitle="Ingresa tu nueva contraseña para restablecerla." />}>
           <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
       </Routes>
