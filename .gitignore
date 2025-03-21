@@ -1,23 +1,37 @@
-frontend/node_modules/
-frontend/dist/
-frontend/build/
-frontend/.pnp/
-frontend/.pnp.js
-frontend/.swc/
+# Node modules
+/frontend/node_modules/
+
+# Distribution or build directories
+/frontend/dist/
+/frontend/build/
+
+# Yarn, PnP and SWC related files
+/frontend.pnp/
+/frontend.pnp.js
+/frontend.swc/
+
+# Log files
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-frontend/.env
-frontend/.env.local
-frontend/.env.development.local
-frontend/.env.test.local
-frontend/.env.production.local
-frontend/.vscode/
-frontend/.idea/
-frontend/*.iml
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment files
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# IDE configuration files for VS Code (frontend) and IntelliJ IDEA (backend)
+/.vscode/
+/.idea/
+/frontend.iml
+
+# System files
 .DS_Store
 Thumbs.db
-*.swp
+.swp
 
-backend/target/
+# Backend build target
+/backend/target/
