@@ -1,10 +1,26 @@
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { List, X, PersonCircle, Person, BoxArrowRight } from "react-bootstrap-icons";
 
 import styles from "./Header.module.css";
 import DropdownTheme from "../DropdownTheme/DropdownTheme";
 import logo from "../../assets/images/logo.svg";
 
 const Header = ({ userProfileImage }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const offcanvas = document.getElementById("offcanvasSidebar");
+
+    offcanvas?.addEventListener("show.bs.offcanvas", () => setMenuOpen(true));
+    offcanvas?.addEventListener("hidden.bs.offcanvas", () => setMenuOpen(false));
+    
+    return () => {
+      offcanvas?.removeEventListener("show.bs.offcanvas", () => setMenuOpen(true));
+      offcanvas?.removeEventListener("hidden.bs.offcanvas", () => setMenuOpen(false));
+    };
+  }, []);
+
   return (
     <header
       className={`${styles.header} position-fixed d-flex align-items-center px-3 bg-body-secondary border-bottom`}
@@ -15,9 +31,13 @@ const Header = ({ userProfileImage }) => {
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasSidebar"
         aria-controls="offcanvasSidebar"
-        aria-label="Abrir menú lateral"
+        aria-label="Alternar menú lateral"
       >
-        <i className={`bi bi-list ${styles["header-icon"]}`}></i>
+        {menuOpen ? (
+          <X className={styles["header-icon"]} />
+        ) : (
+          <List className={styles["header-icon"]} />
+        )}
       </button>
 
       <div className="d-flex flex-grow-1 justify-content-between align-items-center">
@@ -60,9 +80,7 @@ const Header = ({ userProfileImage }) => {
                   className="rounded-circle"
                 />
               ) : (
-                <i
-                  className={`bi bi-none bi-person-circle ${styles["header-icon"]}`}
-                ></i>
+                <PersonCircle className={styles["header-icon"]} />
               )}
             </button>
 
@@ -72,7 +90,7 @@ const Header = ({ userProfileImage }) => {
                   to="/profile"
                   className="dropdown-item rounded-2 d-flex align-items-center"
                 >
-                  <i className="bi bi-person me-2"></i>
+                  <Person className="me-2" />
                   Perfil
                 </Link>
               </li>
@@ -85,7 +103,7 @@ const Header = ({ userProfileImage }) => {
                   data-bs-toggle="modal"
                   data-bs-target="#logoutModal"
                 >
-                  <i className="bi bi-box-arrow-right me-2"></i>
+                  <BoxArrowRight className="me-2" />
                   Cerrar sesión
                 </button>
               </li>

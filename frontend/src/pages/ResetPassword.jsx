@@ -1,3 +1,5 @@
+import InputField from '../components/InputField/InputField';
+
 const ResetPassword = () => {
   return (
     <form noValidate>
@@ -5,38 +7,26 @@ const ResetPassword = () => {
         <label htmlFor="newPassword" className="form-label">
           Nueva contraseña
         </label>
-        <div className="input-group">
-          <input
+        <InputField
+            type="password"
             id="newPassword"
             name="newPassword"
-            type="password"
-            className="form-control password-field"
             placeholder="Nueva contraseña"
-          />
-          <span className="input-group-text cursor-pointer">
-            <i className="bi bi-eye"></i>
-          </span>
-          <div className="invalid-feedback"></div>
-        </div>
+            invalidFeedback={true}
+        />
       </div>
 
       <div className="mb-4">
         <label htmlFor="confirmNewPassword" className="form-label">
           Confirmar contraseña nueva
         </label>
-        <div className="input-group">
-          <input
+        <InputField
+            type="password"
             id="confirmNewPassword"
             name="confirmNewPassword"
-            type="password"
-            className="form-control password-field"
             placeholder="Confirmar contraseña nueva"
-          />
-          <span className="input-group-text cursor-pointer">
-            <i className="bi bi-eye"></i>
-          </span>
-          <div className="invalid-feedback"></div>
-        </div>
+            invalidFeedback={true}
+        />
       </div>
 
       <button type="submit" className="btn btn-custom-primary w-100">

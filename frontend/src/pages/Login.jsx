@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import InputField from '../components/InputField/InputField';
+import Button from '../components/Button/Button';
+
 const Login = () => {
   return (
     <form noValidate>
@@ -7,14 +10,13 @@ const Login = () => {
         <label htmlFor="txtUsername" className="form-label">
           Nombre de usuario
         </label>
-        <input
+        <InputField
+          type="text"
           id="txtUsername"
           name="txtUsername"
-          type="text"
-          className="form-control"
           placeholder="Ingrese su nombre de usuario"
           pattern="[A-Za-zÀ-ÿ0-9_]+"
-          aria-describedby="usernameHelp"
+          ariaDescribedby="usernameHelp"
           autoComplete="username"
         />
       </div>
@@ -25,20 +27,14 @@ const Login = () => {
             Contraseña
           </label>
         </div>
-        <div className="input-group">
-          <input
+        <InputField
+            type="password"
             id="txtPassword"
             name="txtPassword"
-            type="password"
-            className="form-control password-field"
             placeholder="Ingrese su contraseña"
-            aria-describedby="passwordHelp"
+            ariaDescribedby="passwordHelp"
             autoComplete="current-password"
-          />
-          <span className="input-group-text cursor-pointer">
-            <i className="bi bi-eye"></i>
-          </span>
-        </div>
+        />
       </div>
 
       <div className="mb-4 d-flex justify-content-between">
@@ -63,14 +59,9 @@ const Login = () => {
         </div>
       </div>
 
-      <button type="submit" className="btn btn-custom-primary w-100">
-        <span
-          id="spinner"
-          className="spinner-border spinner-border-sm d-none"
-          role="status"
-        ></span>
-        <span id="loginText">Iniciar sesión</span>
-      </button>
+      <Button type="submit" variant="custom-primary" className="w-100">
+        Iniciar sesión
+      </Button>
     </form>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Sun, Moon, CircleHalf, Check2 } from "react-bootstrap-icons";
 
 const DropdownTheme = ({ dropup = false }) => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "auto");
@@ -30,11 +31,11 @@ const DropdownTheme = ({ dropup = false }) => {
   const getActiveIcon = () => {
     switch (theme) {
       case "light":
-        return "bi-sun";
+        return <Sun className="my-1 theme-icon-active" />;
       case "dark":
-        return "bi-moon";
+        return <Moon className="my-1 theme-icon-active" />;
       default:
-        return "bi-circle-half";
+        return <CircleHalf className="my-1 theme-icon-active" />;
     }
   };
 
@@ -49,7 +50,7 @@ const DropdownTheme = ({ dropup = false }) => {
         data-bs-offset="0,0"
         aria-label="Toggle theme"
       >
-        <i className={`bi my-1 theme-icon-active ${getActiveIcon()}`}></i>
+        {getActiveIcon()}
         <span className="visually-hidden" id="bd-theme-text">
           Cambiar tema
         </span>
@@ -69,25 +70,19 @@ const DropdownTheme = ({ dropup = false }) => {
               data-bs-theme-value={mode}
               aria-pressed={theme === mode}
             >
-              <i
-                className={`bi me-2 ${
-                  mode === "light"
-                    ? "bi-sun"
-                    : mode === "dark"
-                    ? "bi-moon"
-                    : "bi-circle-half"
-                }`}
-              ></i>
+              {mode === "light" ? (
+                <Sun className="me-2" />
+              ) : mode === "dark" ? (
+                <Moon className="me-2" />
+              ) : (
+                <CircleHalf className="me-2" />
+              )}
               {mode === "light"
                 ? "Claro"
                 : mode === "dark"
                 ? "Oscuro"
                 : "Sistema"}
-              <i
-                className={`bi ms-auto bi-check2 ${
-                  theme === mode ? "" : "d-none"
-                }`}
-              ></i>
+              {theme === mode && <Check2 className="ms-auto" />}
             </button>
           </li>
         ))}

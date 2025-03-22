@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+import InputField from '../components/InputField/InputField';
+import Button from '../components/Button/Button';
+
 const ForgotPassword = () => {
   return (
     <form noValidate>
@@ -9,24 +12,18 @@ const ForgotPassword = () => {
         <label htmlFor="email" className="form-label">
           Dirección de correo electrónico
         </label>
-        <input
+        <InputField
+          type="email"
           id="email"
           name="email"
-          type="email"
-          className="form-control"
           placeholder="correo@ejemplo.com"
         />
         <div className="invalid-feedback"></div>
       </div>
 
-      <button type="submit" className="btn btn-custom-primary w-100">
-        <span
-          id="spinner"
-          className="spinner-border spinner-border-sm d-none"
-          role="status"
-        ></span>
-        <span id="sendText">Enviar enlace</span>
-      </button>
+      <Button type="submit" variant="custom-primary" className="w-100">
+        Enviar enlace
+      </Button>
 
       <Link
         to="/login"

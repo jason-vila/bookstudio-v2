@@ -17,9 +17,8 @@
   display: none;
 }
 
-.sidebar.collapsed li {
-  width: 100%;
-  box-sizing: border-box;
+.sidebar.collapsed svg {
+  margin-right: 0 !important;
 }
 
 [data-bs-theme="light"] .active-effect {
