@@ -74,6 +74,7 @@ body {
 body.main-layout #offcanvasSidebar {
   width: 235px;
   top: 60px;
+  z-index: 1029;
 }
 
 body.main-layout .offcanvas-backdrop {

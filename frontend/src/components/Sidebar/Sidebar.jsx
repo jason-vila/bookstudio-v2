@@ -1,6 +1,18 @@
 import React, { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { 
+  BarChart, BarChartFill,
+  FileEarmarkText, FileEarmarkTextFill,
+  JournalBookmark, JournalBookmarkFill,
+  PersonPlus, PersonPlusFill,
+  Map, MapFill,
+  Stickies, StickiesFill,
+  Mortarboard, MortarboardFill,
+  People, PeopleFill,
+  ArrowBarLeft, ArrowBarRight
+} from "react-bootstrap-icons";
+import Button from "../Button/Button";
 
 import styles from "./Sidebar.module.css";
 
@@ -18,62 +30,62 @@ const Sidebar = ({ role = "administrador", username = "Invitado", isCollapsed, t
     {
       to: "/",
       label: "Dashboard",
-      iconBase: "bi-bar-chart",
+      icon: (isActive) => isActive ? <BarChartFill className="pe-none me-2" /> : <BarChart className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/loans",
       label: "Préstamos",
-      iconBase: "bi-file-earmark-text",
+      icon: (isActive) => isActive ? <FileEarmarkTextFill className="pe-none me-2" /> : <FileEarmarkText className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/books",
       label: "Libros",
-      iconBase: "bi-journal-bookmark",
+      icon: (isActive) => isActive ? <JournalBookmarkFill className="pe-none me-2" /> : <JournalBookmark className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/authors",
       label: "Autores",
-      iconBase: "bi-person-plus",
+      icon: (isActive) => isActive ? <PersonPlusFill className="pe-none me-2" /> : <PersonPlus className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/publishers",
       label: "Editoriales",
-      iconBase: "bi-map",
+      icon: (isActive) => isActive ? <MapFill className="pe-none me-2" /> : <Map className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/courses",
       label: "Cursos",
-      iconBase: "bi-stickies",
+      icon: (isActive) => isActive ? <StickiesFill className="pe-none me-2" /> : <Stickies className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/students",
       label: "Estudiantes",
-      iconBase: "bi-mortarboard",
+      icon: (isActive) => isActive ? <MortarboardFill className="pe-none me-2" /> : <Mortarboard className="pe-none me-2" />,
       adminOnly: false
     },
     {
       to: "/users",
       label: "Usuarios",
-      iconBase: "bi-people",
+      icon: (isActive) => isActive ? <PeopleFill className="pe-none me-2" /> : <People className="pe-none me-2" />,
       adminOnly: true
     }
   ];
 
-  const SidebarLink = ({ to, label, iconClass, active, withTooltip = false }) => {
+  const SidebarLink = ({ to, label, icon, active, withTooltip = false }) => {
     const linkContent = (
       <Link
         to={to}
         aria-label={label}
-        className={`nav-link text-body-emphasis d-flex align-items-center rounded-2
-          ${active ? styles["active-effect"] : styles.hovered}`}
+        className={`nav-link text-body-emphasis d-flex align-items-center rounded-2 ${active ? styles["active-effect"] : styles.hovered}`}
+        style={{ minHeight: '40px' }}
       >
-        <i className={`bi pe-none me-2 ${iconClass}`}></i>
+        {icon(active)}
         <span className={withTooltip ? styles["sidebar-link"] : ""}>
           {label}
         </span>
@@ -98,14 +110,13 @@ const Sidebar = ({ role = "administrador", username = "Invitado", isCollapsed, t
     return navigationLinks.map((link) => {
       if (!link.adminOnly || role === "administrador") {
         const isActive = currentPage === link.to;
-        const iconClass = `${link.iconBase}${isActive ? "-fill" : ""}`;
         
         return (
           <li className="mb-1" key={link.to}>
             <SidebarLink
               to={link.to}
               label={link.label}
-              iconClass={iconClass}
+              icon={link.icon}
               active={isActive}
               withTooltip={withTooltip}
             />
@@ -117,17 +128,22 @@ const Sidebar = ({ role = "administrador", username = "Invitado", isCollapsed, t
   };
 
   const SidebarToggleButton = (
-    <button
+    <Button
       type="button"
-      className="btn btn-custom-secondary border-0 text-body-emphasis d-flex align-items-center text-nowrap px-3"
+      variant="custom-secondary"
+      className="border-0 text-body-emphasis d-flex align-items-center text-nowrap px-3"
       onClick={toggleSidebar}
       aria-label="Alternar barra lateral"
+      style={{ minHeight: '36px' }}
     >
-      <i className={`bi ${isCollapsed ? "bi-arrow-bar-right" : "bi-arrow-bar-left"}`} />
+      {isCollapsed ? 
+        <ArrowBarRight /> : 
+        <ArrowBarLeft />
+      }
       {!isCollapsed && (
         <span className={`ms-2 ${styles["sidebar-link"]}`}>Cerrar barra lateral</span>
       )}
-    </button>
+    </Button>
   );
 
   return (
