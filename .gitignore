@@ -1,0 +1,51 @@
+# Node modules
+/frontend/node_modules/
+
+# Distribution or build directories
+/frontend/dist/
+/frontend/build/
+
+# Yarn, PnP and SWC related files
+/frontend.pnp/
+/frontend.pnp.js
+/frontend.swc/
+
+# Log files
+*.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment files
+/frontend/.env
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
+
+# IDE configuration files for VS Code (frontend) and IntelliJ IDEA (backend)
+/.vscode/
+/.idea/
+/frontend.iml
+/backend/*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+.swp
+
+# Backend build target
+/backend/target/
+
+# Cache and temporary files
+/frontend/.turbo/
+/frontend/.eslintcache
+/frontend/.vite/
+/frontend/.parcel-cache/
+
+# Lock files for different package managers (if using only npm, you can remove the others)
+/frontend/yarn.lock
+/frontend/pnpm-lock.yaml
+
+# Jest or other test coverage reports
+/frontend/coverage/
