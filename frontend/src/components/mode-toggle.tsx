@@ -8,7 +8,7 @@ export function ModeToggle() {
   return (
     <Button
       variant="outline"
-      className="h-8 w-8 cursor-pointer"
+      className="h-8 w-8"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? (
