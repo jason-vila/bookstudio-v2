@@ -1,18 +1,9 @@
-"use client"
+"use client";
 
 import { Link } from "react-router-dom";
-import {
-  User,
-  Bell,
-  ChevronsUpDown,
-  LogOut,
-} from "lucide-react"
+import { User, Bell, ChevronsUpDown, LogOut } from "lucide-react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,24 +12,25 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { ConfirmDialog } from "@/components/confirm-dialog";
 
 export function NavUser({
   user,
 }: {
   user: {
-    name: string
-    email: string
-    avatar: string
-  }
+    name: string;
+    email: string;
+    avatar: string;
+  };
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>
@@ -92,18 +84,23 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem
-              asChild
-              className="text-red-600 dark:text-red-500 data-[highlighted]:text-red-600 dark:data-[highlighted]:text-red-500"
+            <ConfirmDialog
+              title="¿Estás seguro?"
+              description="Esto cerrará tu sesión y te redirigirá a la página de inicio."
+              confirmLabel="Cerrar sesión"
+              to="/login"
             >
-              <Link to="/login">
+              <DropdownMenuItem
+                className="text-red-600 dark:text-red-500 data-[highlighted]:text-red-600 dark:data-[highlighted]:text-red-500"
+                onSelect={(e) => e.preventDefault()}
+              >
                 <LogOut className="text-current" />
                 Cerrar sesión
-              </Link>
-            </DropdownMenuItem>
+              </DropdownMenuItem>
+            </ConfirmDialog>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
