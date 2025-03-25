@@ -44,7 +44,7 @@ const ForgotPassword = ({
               Enviar enlace
             </Button>
             <Button variant="outline" asChild>
-              <Link to="/login">Cancelar</Link>
+              <Link to="/login">Volver al inicio de sesión</Link>
             </Button>
           </div>
         </div>

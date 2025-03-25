@@ -82,12 +82,12 @@ export function NavUser({
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 <Link to="/profile">
-                  <User />
+                  <User className="text-current" />
                   Perfil
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Bell />
+                <Bell className="text-current" />
                 Notificaciones
               </DropdownMenuItem>
             </DropdownMenuGroup>

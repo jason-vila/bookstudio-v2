@@ -21,8 +21,7 @@ export function PasswordInput({
         type="button"
         variant="ghost"
         size="icon"
-        className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground cursor-pointer 
-             hover:text-foreground hover:!bg-transparent hover:!shadow-none focus-visible:ring-0"
+        className="absolute right-0 top-0 h-full px-3 py-2 text-muted-foreground hover:text-foreground hover:!bg-transparent hover:!shadow-none focus-visible:ring-0"
         onClick={() => setShowPassword(!showPassword)}
         aria-label={showPassword ? "Hide password" : "Show password"}
       >
