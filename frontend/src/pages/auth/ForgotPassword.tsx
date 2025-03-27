@@ -26,7 +26,7 @@ const ForgotPassword = ({
             </a>
             <h1 className="text-xl font-bold">Restablece la contraseña</h1>
             <div className="text-center text-sm">
-              Escribe la dirección de correo electrónico vinculado a tu cuenta de Bookstudio y te enviaremos un mensaje.
+              Escribe la dirección de correo electrónico vinculado a tu cuenta de BookStudio y te enviaremos un mensaje.
             </div>
           </div>
           <div className="flex flex-col gap-6">
@@ -35,7 +35,7 @@ const ForgotPassword = ({
               <Input
                 id="email"
                 type="email"
-                placeholder="correo@ejemplo.com"
+                placeholder="ejemplo@correo.com"
                 required
               />
             </div>
