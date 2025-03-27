@@ -25,7 +25,7 @@ const ResetPassword = ({
             </a>
             <h1 className="text-xl font-bold">Crear nueva contraseña</h1>
             <div className="text-center text-sm">
-              Ingresa la nueva contraseña para tu cuenta de Bookstudio a continuación.
+              Ingresa la nueva contraseña para tu cuenta de BookStudio a continuación.
             </div>
           </div>
           <div className="flex flex-col gap-6">
