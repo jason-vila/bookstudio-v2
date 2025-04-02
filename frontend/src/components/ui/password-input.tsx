@@ -10,11 +10,18 @@ export function PasswordInput({
 }: React.InputHTMLAttributes<HTMLInputElement>) {
   const [showPassword, setShowPassword] = React.useState(false);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === " ") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className="relative">
       <Input
         type={showPassword ? "text" : "password"}
         className={cn("pr-10", className)}
+        onKeyDown={handleKeyDown}
         {...props}
       />
       <Button

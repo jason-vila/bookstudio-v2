@@ -16,101 +16,92 @@ const Dashboard = () => {
         <div className="@xl/main:grid-cols-2 @5xl/main:grid-cols-4 grid grid-cols-1 gap-4">
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Total Revenue</CardDescription>
+              <CardDescription>Libros Prestados</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                $1,250.00
+                120
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
-                  +12.5%
+                  +15%
                 </Badge>
               </div>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Trending up this month <TrendingUpIcon className="size-4" />
+                Incremento de préstamos este mes <TrendingUpIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
-                Visitors for the last 6 months
+                Comparado con el mes anterior.
               </div>
             </CardFooter>
           </Card>
+
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>New Customers</CardDescription>
+              <CardDescription>Libros Devueltos</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                1,234
+                95
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingDownIcon className="size-3" />
-                  -20%
+                  -5%
                 </Badge>
               </div>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Down 20% this period <TrendingDownIcon className="size-4" />
+                Devoluciones a tiempo <TrendingDownIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
-                Acquisition needs attention
+                Leve disminución este mes.
               </div>
             </CardFooter>
           </Card>
+
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Active Accounts</CardDescription>
+              <CardDescription>Autores Registrados</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                45,678
+                75
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
-                  +12.5%
+                  +8%
                 </Badge>
               </div>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Strong user retention <TrendingUpIcon className="size-4" />
+                Nuevos autores este mes <TrendingUpIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
-                Engagement exceed targets
+                Registros en aumento.
               </div>
             </CardFooter>
           </Card>
+
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Growth Rate</CardDescription>
+              <CardDescription>Usuarios Activos</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
-                4.5%
+                150
               </CardTitle>
               <div className="absolute right-4">
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
+                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
                   <TrendingUpIcon className="size-3" />
-                  +4.5%
+                  +10%
                 </Badge>
               </div>
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Steady performance <TrendingUpIcon className="size-4" />
+                Mayor actividad de usuarios <TrendingUpIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
-                Meets growth projections
+                Participación en el sistema.
               </div>
             </CardFooter>
           </Card>
