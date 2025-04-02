@@ -14,6 +14,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,24 +24,8 @@ import { Separator } from "@/components/ui/separator";
 import { Input } from "@/components/ui/input";
 import { PasswordInput } from "@/components/ui/password-input";
 
-const personalSchema = z.object({
-  username: z
-    .string()
-    .min(2, {
-      message: "El nombre de usuario debe tener al menos 2 caracteres.",
-    })
-    .max(30, {
-      message: "El nombre de usuario no puede tener más de 30 caracteres.",
-    }),
-  email: z
-    .string()
-    .email({ message: "Introduce un correo electrónico válido." }),
-  firstName: z.string().min(1, { message: "Los nombres son obligatorios." }),
-  lastName: z.string().min(1, { message: "Los apellidos son obligatorios." }),
-});
-
 const photoSchema = z.object({
-  foto: z
+  photo: z
     .instanceof(File)
     .refine(
       (file) => {
@@ -57,29 +42,75 @@ const photoSchema = z.object({
     .refine((file) => file.size <= 5 * 1024 * 1024, {
       message: "El tamaño máximo de la imagen es 5MB.",
     })
-    .optional()
-    .or(z.null()),
+    .nullable(),
+});
+
+const personalSchema = z.object({
+  username: z
+    .string()
+    .min(2, {
+      message: "El nombre de usuario debe tener al menos 2 caracteres.",
+    })
+    .max(15, {
+      message: "El nombre de usuario no puede tener más de 15 caracteres.",
+    })
+    .transform((val) => val.trim())
+    .refine((val) => /^[A-Za-z0-9_]+$/.test(val), {
+      message:
+        "El nombre de usuario solo puede contener letras, números y guiones bajos.",
+    }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Introduce un correo electrónico válido." }),
+  firstName: z
+    .string()
+    .min(2, { message: "El nombre debe tener al menos 2 caracteres." })
+    .max(50, { message: "El nombre no puede tener más de 50 caracteres." })
+    .transform((val) => val.trim().replace(/\s+/g, " "))
+    .refine((val) => /^[A-Za-zÀ-ÿ\s-]+$/.test(val), {
+      message: "El nombre solo puede contener letras, espacios y guiones (-).",
+    }),
+  lastName: z
+    .string()
+    .min(2, { message: "El apellido debe tener al menos 2 caracteres." })
+    .max(50, { message: "El apellido no puede tener más de 50 caracteres." })
+    .transform((val) => val.trim().replace(/\s+/g, " "))
+    .refine((val) => /^[A-Za-zÀ-ÿ\s-]+$/.test(val), {
+      message:
+        "El apellido solo puede contener letras, espacios y guiones (-).",
+    }),
 });
 
 const passwordSchema = z
   .object({
-    currentPassword: z.string().min(6, {
-      message: "La contraseña actual debe tener al menos 6 caracteres.",
+    currentPassword: z.string().trim().min(8, {
+      message: "La contraseña actual debe tener al menos 8 caracteres.",
     }),
-    newPassword: z.string().min(6, {
-      message: "La contraseña nueva debe tener al menos 6 caracteres.",
-    }),
+    newPassword: z
+      .string()
+      .trim()
+      .min(8, { message: "La contraseña debe tener al menos 8 caracteres." })
+      .max(50, {
+        message: "La contraseña no puede tener más de 50 caracteres.",
+      })
+      .regex(/^\S+$/, "La contraseña no puede contener espacios en blanco.")
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/, {
+        message:
+          "La contraseña debe incluir al menos una minúscula, una mayúscula, un número y un carácter especial (@$!%*?&).",
+      }),
     confirmNewPassword: z
       .string()
-      .min(6, { message: "Debes confirmar la contraseña nueva." }),
+      .trim()
+      .min(8, { message: "Debes confirmar la contraseña nueva." }),
   })
   .refine((data) => data.newPassword === data.confirmNewPassword, {
-    message: "Las contraseñas nuevas deben coincidir.",
+    message: "Las contraseñas no coinciden.",
     path: ["confirmNewPassword"],
   });
 
-type PersonalFormValues = z.infer<typeof personalSchema>;
 type PhotoFormValues = z.infer<typeof photoSchema>;
+type PersonalFormValues = z.infer<typeof personalSchema>;
 type PasswordFormValues = z.infer<typeof passwordSchema>;
 
 const personalDefaults: Partial<PersonalFormValues> = {
@@ -98,7 +129,7 @@ const passwordDefaults: Partial<PasswordFormValues> = {
 const Profile = () => {
   const photoForm = useForm<PhotoFormValues>({
     resolver: zodResolver(photoSchema),
-    defaultValues: { foto: null },
+    defaultValues: { photo: null },
     mode: "onChange",
   });
 
@@ -114,10 +145,9 @@ const Profile = () => {
     mode: "onChange",
   });
 
-  const photoValue = useWatch({ control: photoForm.control, name: "foto" });
+  const photoValue = useWatch({ control: photoForm.control, name: "photo" });
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadPhoto = () => {
@@ -125,7 +155,7 @@ const Profile = () => {
   };
 
   const handleDeletePhoto = () => {
-    photoForm.setValue("foto", null);
+    photoForm.setValue("photo", null);
     setAvatarUrl(null);
     setPhotoError(null);
     if (fileInputRef.current) {
@@ -134,7 +164,7 @@ const Profile = () => {
   };
 
   const handlePhotoSubmit = (data: PhotoFormValues) => {
-    console.log("Foto de perfil:", data);
+    console.log("Datos de la foto de perfil:", data);
   };
 
   const handlePersonalSubmit = (data: PersonalFormValues) => {
@@ -148,7 +178,7 @@ const Profile = () => {
   useEffect(() => {
     if (photoValue instanceof File) {
       try {
-        photoSchema.shape.foto.parse(photoValue);
+        photoSchema.shape.photo.parse(photoValue);
         const objectUrl = URL.createObjectURL(photoValue);
         setAvatarUrl(objectUrl);
         setPhotoError(null);
@@ -169,7 +199,7 @@ const Profile = () => {
 
   const getFallback = () => {
     const { firstName, lastName } = personalForm.getValues();
-    return `${firstName[0]}${lastName[0]}`.toUpperCase();
+    return `${firstName[0] || ""}${lastName[0] || ""}`.toUpperCase();
   };
 
   return (
@@ -201,17 +231,20 @@ const Profile = () => {
           </Avatar>
           <div className="absolute bottom-0 right-0">
             <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full flex items-center justify-center bg-background">
+              <div className="absolute bottom-0 right-0 w-8 h-8 rounded-full flex items-center justify-center bg-background">
+                <DropdownMenuTrigger asChild>
                   <Button
                     type="button"
                     variant="outline"
                     className="w-full h-full p-0 rounded-full"
+                    aria-label="Editar"
+                    title="Editar"
                   >
                     <Pencil />
                   </Button>
-                </div>
-              </DropdownMenuTrigger>
+                </DropdownMenuTrigger>
+              </div>
+
               <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={handleUploadPhoto}>
                   <Upload className="text-current" />
@@ -219,7 +252,7 @@ const Profile = () => {
                 </DropdownMenuItem>
                 {avatarUrl && (
                   <DropdownMenuItem
-                    className="text-red-600 dark:text-red-500 data-[highlighted]:text-red-600 dark:data-[highlighted]:text-red-500"
+                    className="text-destructive data-[highlighted]:text-destructive"
                     onClick={handleDeletePhoto}
                   >
                     <Trash className="text-current" />
@@ -233,14 +266,14 @@ const Profile = () => {
 
         <input
           ref={fileInputRef}
-          id="foto-input"
+          id="photo-input"
           type="file"
           accept="image/jpeg,image/png,image/gif,image/webp"
           className="hidden"
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
-              photoForm.setValue("foto", file);
+              photoForm.setValue("photo", file);
             }
           }}
         />
@@ -267,13 +300,15 @@ const Profile = () => {
                 name="firstName"
                 render={({ field, fieldState }) => (
                   <FormItem>
-                    <FormLabel>Nombres</FormLabel>
+                    <FormLabel>Nombre</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ingrese sus nombres" {...field} />
+                      <Input
+                        placeholder="Ingrese su nombre"
+                        autoComplete="given-name"
+                        {...field}
+                      />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage className="text-xs text-destructive mt-1" />
-                    )}
+                    {fieldState.error && <FormMessage />}
                   </FormItem>
                 )}
               />
@@ -282,13 +317,15 @@ const Profile = () => {
                 name="lastName"
                 render={({ field, fieldState }) => (
                   <FormItem>
-                    <FormLabel>Apellidos</FormLabel>
+                    <FormLabel>Apellido</FormLabel>
                     <FormControl>
-                      <Input placeholder="Ingrese sus apellidos" {...field} />
+                      <Input
+                        placeholder="Ingrese su apellido"
+                        autoComplete="family-name"
+                        {...field}
+                      />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage className="text-xs text-destructive mt-1" />
-                    )}
+                    {fieldState.error && <FormMessage />}
                   </FormItem>
                 )}
               />
@@ -302,15 +339,14 @@ const Profile = () => {
                   <FormControl>
                     <Input
                       placeholder="Ingrese su nombre de usuario"
+                      autoComplete="username"
                       {...field}
                     />
                   </FormControl>
-                  <p className="text-xs text-muted-foreground">
+                  <FormDescription>
                     Puedes cambiar tu nombre de usuario una vez cada 30 días.
-                  </p>
-                  {fieldState.error && (
-                    <FormMessage className="text-xs text-destructive mt-1" />
-                  )}
+                  </FormDescription>
+                  {fieldState.error && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -324,12 +360,11 @@ const Profile = () => {
                     <Input
                       type="email"
                       placeholder="ejemplo@correo.com"
+                      autoComplete="email"
                       {...field}
                     />
                   </FormControl>
-                  {fieldState.error && (
-                    <FormMessage className="text-xs text-destructive mt-1" />
-                  )}
+                  {fieldState.error && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -356,11 +391,13 @@ const Profile = () => {
                 <FormItem>
                   <FormLabel>Contraseña actual</FormLabel>
                   <FormControl>
-                    <PasswordInput placeholder="Contraseña actual" {...field} />
+                    <PasswordInput
+                      placeholder="Contraseña actual"
+                      autoComplete="current-password"
+                      {...field}
+                    />
                   </FormControl>
-                  {fieldState.error && (
-                    <FormMessage className="text-xs text-destructive mt-1" />
-                  )}
+                  {fieldState.error && <FormMessage />}
                 </FormItem>
               )}
             />
@@ -374,12 +411,11 @@ const Profile = () => {
                     <FormControl>
                       <PasswordInput
                         placeholder="Contraseña nueva"
+                        autoComplete="new-password"
                         {...field}
                       />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage className="text-xs text-destructive mt-1" />
-                    )}
+                    {fieldState.error && <FormMessage />}
                   </FormItem>
                 )}
               />
@@ -392,12 +428,11 @@ const Profile = () => {
                     <FormControl>
                       <PasswordInput
                         placeholder="Confirmar contraseña nueva"
+                        autoComplete="new-password"
                         {...field}
                       />
                     </FormControl>
-                    {fieldState.error && (
-                      <FormMessage className="text-xs text-destructive mt-1" />
-                    )}
+                    {fieldState.error && <FormMessage />}
                   </FormItem>
                 )}
               />

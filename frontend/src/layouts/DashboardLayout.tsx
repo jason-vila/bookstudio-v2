@@ -20,7 +20,7 @@ const pageMap: Record<string, string> = {
   "/profile": "Perfil",
 };
 
-const MainLayout = () => {
+const DashboardLayout = () => {
   const location = useLocation();
   const page = pageMap[location.pathname] || "Desconocido";
 
@@ -48,4 +48,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout;
+export default DashboardLayout;

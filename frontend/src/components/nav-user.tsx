@@ -91,7 +91,7 @@ export function NavUser({
               to="/login"
             >
               <DropdownMenuItem
-                className="text-red-600 dark:text-red-500 data-[highlighted]:text-red-600 dark:data-[highlighted]:text-red-500"
+                className="text-destructive data-[highlighted]:text-destructive"
                 onSelect={(e) => e.preventDefault()}
               >
                 <LogOut className="text-current" />
