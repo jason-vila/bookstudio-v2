@@ -213,10 +213,7 @@ const Profile = () => {
 
       <div className="flex flex-col items-center relative">
         <div className="relative">
-          <Avatar
-            key={avatarUrl ?? "fallback"}
-            className="w-32 h-32 rounded-full"
-          >
+          <Avatar key={avatarUrl ?? "fallback"} className="w-32 h-32">
             {avatarUrl ? (
               <AvatarImage
                 src={avatarUrl}
