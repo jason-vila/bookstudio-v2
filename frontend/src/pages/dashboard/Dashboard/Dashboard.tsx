@@ -16,12 +16,15 @@ const Dashboard = () => {
         <div className="@xl/main:grid-cols-2 @5xl/main:grid-cols-4 grid grid-cols-1 gap-4">
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Libros Prestados</CardDescription>
+              <CardDescription>Libros prestados</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                 120
               </CardTitle>
               <div className="absolute right-4">
-                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
+                <Badge
+                  variant="outline"
+                  className="flex gap-1 rounded-lg text-xs"
+                >
                   <TrendingUpIcon className="size-3" />
                   +15%
                 </Badge>
@@ -29,7 +32,8 @@ const Dashboard = () => {
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Incremento de préstamos este mes <TrendingUpIcon className="size-4" />
+                Incremento de préstamos este mes{" "}
+                <TrendingUpIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
                 Comparado con el mes anterior.
@@ -39,12 +43,15 @@ const Dashboard = () => {
 
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Libros Devueltos</CardDescription>
+              <CardDescription>Libros devueltos</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                 95
               </CardTitle>
               <div className="absolute right-4">
-                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
+                <Badge
+                  variant="outline"
+                  className="flex gap-1 rounded-lg text-xs"
+                >
                   <TrendingDownIcon className="size-3" />
                   -5%
                 </Badge>
@@ -62,12 +69,15 @@ const Dashboard = () => {
 
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Autores Registrados</CardDescription>
+              <CardDescription>Autores registrados</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                 75
               </CardTitle>
               <div className="absolute right-4">
-                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
+                <Badge
+                  variant="outline"
+                  className="flex gap-1 rounded-lg text-xs"
+                >
                   <TrendingUpIcon className="size-3" />
                   +8%
                 </Badge>
@@ -77,20 +87,21 @@ const Dashboard = () => {
               <div className="line-clamp-1 flex gap-2 font-medium">
                 Nuevos autores este mes <TrendingUpIcon className="size-4" />
               </div>
-              <div className="text-muted-foreground">
-                Registros en aumento.
-              </div>
+              <div className="text-muted-foreground">Registros en aumento.</div>
             </CardFooter>
           </Card>
 
           <Card className="@container/card">
             <CardHeader className="relative">
-              <CardDescription>Usuarios Activos</CardDescription>
+              <CardDescription>Usuarios activos</CardDescription>
               <CardTitle className="@[250px]/card:text-3xl text-2xl font-semibold tabular-nums">
                 150
               </CardTitle>
               <div className="absolute right-4">
-                <Badge variant="outline" className="flex gap-1 rounded-lg text-xs">
+                <Badge
+                  variant="outline"
+                  className="flex gap-1 rounded-lg text-xs"
+                >
                   <TrendingUpIcon className="size-3" />
                   +10%
                 </Badge>
@@ -98,7 +109,8 @@ const Dashboard = () => {
             </CardHeader>
             <CardFooter className="flex-col items-start gap-1 text-sm">
               <div className="line-clamp-1 flex gap-2 font-medium">
-                Mayor actividad de usuarios <TrendingUpIcon className="size-4" />
+                Mayor actividad de usuarios{" "}
+                <TrendingUpIcon className="size-4" />
               </div>
               <div className="text-muted-foreground">
                 Participación en el sistema.

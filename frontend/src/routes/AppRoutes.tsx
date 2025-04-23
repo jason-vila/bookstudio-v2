@@ -5,15 +5,15 @@ import { LibraryBig } from "lucide-react";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AuthLayout from "../layouts/AuthLayout";
 
-const Dashboard = lazy(() => import("../pages/dashboard/Dashboard"));
-const Users = lazy(() => import("../pages/dashboard/Users"));
-const Books = lazy(() => import("../pages/dashboard/Books"));
-const Authors = lazy(() => import("../pages/dashboard/Authors"));
-const Courses = lazy(() => import("../pages/dashboard/Courses"));
-const Loans = lazy(() => import("../pages/dashboard/Loans"));
-const Publishers = lazy(() => import("../pages/dashboard/Publishers"));
-const Students = lazy(() => import("../pages/dashboard/Students"));
-const Profile = lazy(() => import("../pages/dashboard/Profile"));
+const Dashboard = lazy(() => import("../pages/dashboard/Dashboard/Dashboard"));
+const Users = lazy(() => import("../pages/dashboard/Users/UsersPage"));
+const Books = lazy(() => import("../pages/dashboard/Books/BooksPage"));
+const Authors = lazy(() => import("../pages/dashboard/Authors/AuthorsPage"));
+const Courses = lazy(() => import("../pages/dashboard/Courses/CoursesPage"));
+const Loans = lazy(() => import("../pages/dashboard/Loans/LoansPage"));
+const Publishers = lazy(() => import("../pages/dashboard/Publishers/PublishersPage"));
+const Students = lazy(() => import("../pages/dashboard/Students/StudentsPage"));
+const Profile = lazy(() => import("../pages/dashboard/Profile/Profile"));
 const Login = lazy(() => import("../pages/auth/Login"));
 const ForgotPassword = lazy(() => import("../pages/auth/ForgotPassword"));
 const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
@@ -21,7 +21,7 @@ const ResetPassword = lazy(() => import("../pages/auth/ResetPassword"));
 function LoadingScreen() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background">
-      <div className="bg-primary text-primary-foreground flex aspect-square h-16 w-16 items-center justify-center rounded-2xl animate-pulse">
+      <div className="bg-primary text-primary-foreground flex aspect-square h-16 w-16 items-center justify-center rounded-2xl">
         <LibraryBig className="h-10 w-10" />
       </div>
     </div>
