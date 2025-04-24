@@ -1,23 +1,14 @@
 import { Ellipsis } from "lucide-react";
-import { Row } from "@tanstack/react-table";
-
+import { Eye, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>;
-}
-
-export function DataTableRowActions<TData>({
-  row
-}: DataTableRowActionsProps<TData>) {
+export function DataTableRowActions() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -29,13 +20,14 @@ export function DataTableRowActions<TData>({
           <Ellipsis className="size-4" aria-hidden="true" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Detalles</DropdownMenuItem>
-        <DropdownMenuItem>Editar</DropdownMenuItem>
-        <DropdownMenuSeparator />
+      <DropdownMenuContent align="end">
         <DropdownMenuItem>
-          Eliminar
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+          <Eye />
+          Detalles
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Pencil />
+          Editar
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

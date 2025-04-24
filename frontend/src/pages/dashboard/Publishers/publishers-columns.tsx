@@ -169,6 +169,6 @@ export const columns: ColumnDef<Publisher>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: () => <DataTableRowActions />,
   },
 ];
