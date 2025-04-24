@@ -35,7 +35,11 @@ export function DataTablePagination<TData>({
               table.setPageSize(Number(value));
             }}
           >
-            <SelectTrigger className="w-[70px]" size="sm">
+            <SelectTrigger
+              className="w-[70px]"
+              size="sm"
+              aria-label="Seleccionar número de filas por página"
+            >
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
