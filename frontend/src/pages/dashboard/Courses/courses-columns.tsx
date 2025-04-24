@@ -130,6 +130,6 @@ export const columns: ColumnDef<Course>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: () => <DataTableRowActions />,
   },
 ];

@@ -175,6 +175,6 @@ export const columns: ColumnDef<Author>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: () => <DataTableRowActions  />,
   },
 ];

@@ -180,6 +180,6 @@ export const columns: ColumnDef<Loan>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: () => <DataTableRowActions />,
   },
 ];
